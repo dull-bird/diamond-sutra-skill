@@ -1,6 +1,6 @@
 ---
 name: diamond-sutra
-description: 金刚般若波罗蜜经，大乘 般若部
+description: Use this skill to answer questions related to the Diamond Sutra (Mahayana Buddhism, Prajna division) and when the user seeks spiritual or psychological advice on letting go of anxiety, workplace stress, and social labels using modern Buddhist interpretations from Master Nan Huai-Jin and Prof. Fei Yong.
 user-invocable: true
 ---
 
