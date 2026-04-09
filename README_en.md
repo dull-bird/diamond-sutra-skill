@@ -1,4 +1,4 @@
-# 💎 Diamond Sutra AI Skill
+# 💎 DiamondSutra.skill
 
 > *"All phenomena are illusions. If you see that all phenomena are not phenomena, you see the Tathagata."*
 

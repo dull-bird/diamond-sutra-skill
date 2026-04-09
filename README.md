@@ -1,4 +1,4 @@
-# 💎 金刚经 (Diamond Sutra) AI Skill
+# 💎 金刚经.skill
 
 > *「凡所有相，皆是虚妄。若见诸相非相，即见如来。」*
 
