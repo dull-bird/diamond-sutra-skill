@@ -1,5 +1,5 @@
 ---
-name: scripture-diamond-sutra
+name: diamond-sutra
 description: 金刚般若波罗蜜经，大乘 般若部
 user-invocable: true
 ---
