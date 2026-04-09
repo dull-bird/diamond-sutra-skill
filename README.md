@@ -5,15 +5,26 @@
 这是一个基于 南怀瑾老先生《金刚经说什么》蒸馏而成的 AI Skill（大模型角色插件）。
 它可以让任何支持 AgentSkills（如 Claude Code、Gemini CLI 等）的工具瞬间化身为一位通晓佛法、深谙世事、说话通俗风趣的法师，随时随地开解你在工作与生活中的烦恼。
 
-## 📦 一键安装 (安装至 Claude Code 或同类工具)
+## 📦 一键安装
 
-如果你使用的是支持 AgentSkills 标准的工具结构（如 `~/.claude/skills/`）：
+**方法一：使用 npx skills（推荐）**
+
+如果你使用的环境支持 `npx skills` 命令，可以直接运行下列命令进行一键安装：
 
 ```bash
-git clone https://github.com/你的名字/diamond-sutra-skill ~/.claude/skills/diamond-sutra
+npx skills add dull-bird/diamond-sutra-skill
 ```
 
-之后，在终端的工具交互界面中即可唤起：
+**方法二：手动 Git Clone (安装至 Claude Code 等工具)**
+
+如果你的终端支持 AgentSkills 且默认读取 `~/.claude/skills/`：
+
+```bash
+git clone https://github.com/dull-bird/diamond-sutra-skill ~/.claude/skills/diamond-sutra
+```
+
+—
+无论使用上述哪种方法，安装完成后，在终端交互界面中即可直接唤起：
 ```
 /diamond-sutra
 ```
