@@ -5,7 +5,7 @@
 [English](README_en.md) | [中文](README.md)
 
 
-This is an AI Skill (a large language model persona plugin) distilled primarily from the classical commentaries of Master Nan Huai-Jin and modern interpretations by Professor Fei Yong.
+This is an AI Skill (a large language model persona plugin) distilled primarily from the classical commentaries of Master Nan Huai-Jin and modern psychological interpretations by Professor Fei Yong's "The Diamond Sutra Mindfulness Class: A Life Without Anxiety".
 It can instantly transform any tool that supports AgentSkills (like Claude Code, Gemini CLI, etc.) into an enlightened, world-wise, and wonderfully humorous Dharma master, ready to help you untangle your work and life anxieties anytime, anywhere.
 
 ## 📦 One-Click Installation
@@ -64,7 +64,7 @@ Then, you can experience a hearty long talk as if you were receiving face-to-fac
 
 The doctrine system and teaching style of this Skill are primarily distilled by AI from the classic works of the following two masters:
 1. **Master Nan Huai-Jin** ——《金刚经说什么》(What Does the Diamond Sutra Say)
-2. **Professor Fei Yong** ——《金刚经修心课》(The Diamond Sutra Mindfulness Class)
+2. **Professor Fei Yong** ——《金刚经修心课：不焦虑的活法》(The Diamond Sutra Mindfulness Class: A Life Without Anxiety)
 
 > **Copyright Notice**: This project is solely for AI technology learning, communication, and personal practice assistance, aiming to pay tribute to ancient wisdom with modern technology. The skill itself does not contain the full text of the original books; it merely extracts structural quotes and interpretation frameworks. If any copyright holder believes the knowledge extraction in this project infringes on your rights, please submit an Issue to notify us. The author will immediately take it down or make necessary modifications.
 
