@@ -51,4 +51,14 @@ git clone https://github.com/dull-bird/diamond-sutra-skill ~/.claude/skills/diam
 之后你就能领略到犹如高僧大德或者南师面授机宜式的畅快长谈。
 
 ---
-*Created by the `buddhist_skill` framework.*
+
+## 📚 知识来源与版权声明
+
+本 Skill 的义理体系与说法风格，主要通过 AI 知识蒸馏自以下两位老师的经典著作：
+1. **南怀瑾 先生** ——《金刚经说什么》
+2. **费勇 教授** ——《金刚经修心课》
+
+> **版权声明**：本项目仅用于 AI 技术的学习、交流与个人的修行辅助，旨在以现代科技致敬先贤智慧。技能本身不包含原书的完整文本，仅包含抽取出的语录结构和解读框架。如有任何版权方认为本项目的知识提取侵犯了您的权益，请提交 Issue 告知，作者将第一时间配合下架或修改处理。
+
+---
+🛠 *This skill is powered and automatically distilled by the [buddhist_skill](https://github.com/dull-bird/buddhist_skill) framework.*
