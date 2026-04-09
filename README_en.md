@@ -34,11 +34,16 @@ Whichever method you choose, after installation, you can instantly invoke it in 
 
 ## 💬 Start Experiencing
 
-Once awakened, you can pour out your troubles to "him" or ask profound Buddhist questions:
+There are two ways to invoke this skill:
 
-- ❓ *"My project keeps getting rejected lately and I feel slightly depressed, what should I do?"*
-- ❓ *"My boss always makes me work overtime and take the blame. How can I deal with this grievance from the perspective of the Diamond Sutra?"*
-- ❓ *"How do I actually practice 'Formless Giving' and 'Abiding Nowhere' in a modern workplace?"*
+**Method 1: Explicit Invocation**  
+Simply type `/diamond-sutra` to start pouring out your troubles to "him" or asking profound Buddhist questions.
+
+**Method 2: Smart Auto-Invoke (Passive Trigger)**  
+Because this skill has built-in situational triggers in its description, you don't even need to type the command! Just complain naturally in your chat:
+- ❓ *"My project keeps getting rejected lately, work is super stressful, and I feel like the labels society forces on me are suffocating me. How would Buddhism view this?"*
+
+The LLM agent will automatically detect your "anxiety", "work pressure", and "identity confusion", and seamlessly invoke this "Digital Dharma Master" in the background to counsel you.
 
 ## 🪷 Distinctive Features of this Skill
 
