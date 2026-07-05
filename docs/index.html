@@ -573,57 +573,6 @@
       font-size: 16px;
     }
 
-    .video-shell {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 16 / 9;
-      border: 1px solid var(--line-strong);
-      border-radius: 8px;
-      background: var(--paper-sunken);
-    }
-
-    .video-shell img,
-    .video-shell video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .video-play {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      border: 0;
-      background: color-mix(in srgb, var(--paper-sunken) 32%, transparent);
-      cursor: pointer;
-    }
-
-    .play-inner {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      border: 1px solid var(--line-strong);
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--paper-raised) 92%, transparent);
-      color: var(--ink);
-      padding: 12px 18px 12px 14px;
-      font-family: var(--font-ui);
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .play-dot {
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #fffaf0;
-      line-height: 1;
-    }
-
     .install-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -809,7 +758,7 @@
             <span class="en-only">An open-source AI Skill that brings the Diamond Sutra into your agent. When regret, anxiety, or identity labels tighten around you, it helps you talk the knot open, one line at a time.</span>
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#demo"><span class="zh-only">看演示</span><span class="en-only">Watch demo</span></a>
+            <a class="btn btn-primary" href="#install"><span class="zh-only">安装</span><span class="en-only">Install</span></a>
             <a class="btn btn-secondary" href="https://github.com/dull-bird/diamond-sutra-skill">GitHub</a>
           </div>
           <div class="hero-actions" style="margin-top: 12px;">
@@ -943,30 +892,6 @@
       </div>
     </section>
 
-    <section id="demo">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow"><span class="zh-only">演示</span><span class="en-only">Demo</span></p>
-            <h2><span class="zh-only">点击后再加载视频。</span><span class="en-only">The video loads only after a click.</span></h2>
-          </div>
-          <p class="section-intro">
-            <span class="zh-only">演示视频放在仓库里。默认只加载封面，节省流量。</span>
-            <span class="en-only">The demo video is stored in this repo. The page loads only the poster until you press play.</span>
-          </p>
-        </div>
-        <div class="video-shell" id="videoShell">
-          <img src="assets/poster.jpg" alt="Diamond Sutra Skill demo poster">
-          <button class="video-play" id="videoPlay" type="button">
-            <span class="play-inner">
-              <span class="play-dot">▶</span>
-              <span class="zh-only">播放演示</span><span class="en-only">Play demo</span>
-            </span>
-          </button>
-        </div>
-      </div>
-    </section>
-
     <section id="install">
       <div class="wrap">
         <p class="eyebrow"><span class="zh-only">安装</span><span class="en-only">Install</span></p>
@@ -1071,11 +996,6 @@
       window.setTimeout(() => {
         copyBtn.textContent = zh ? '复制' : 'Copy';
       }, 1400);
-    });
-
-    document.getElementById('videoPlay').addEventListener('click', () => {
-      const shell = document.getElementById('videoShell');
-      shell.innerHTML = '<video controls autoplay playsinline poster="assets/poster.jpg"><source src="assets/diamond-sutra-promo.mp4" type="video/mp4"></video>';
     });
   </script>
 </body>
