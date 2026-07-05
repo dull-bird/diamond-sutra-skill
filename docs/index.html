@@ -1,0 +1,1082 @@
+<!doctype html>
+<html lang="zh" data-theme="light" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>金刚经 · Skill | Diamond Sutra · Skill</title>
+  <meta name="description" content="一个开源 AI Agent Skill，把《金刚经》的智慧装进你的 AI。An open-source AI Agent Skill for the Diamond Sutra.">
+  <meta property="og:title" content="金刚经 · Skill | Diamond Sutra · Skill">
+  <meta property="og:description" content="不装神弄鬼，只把《金刚经》的般若智慧讲回日常生活。">
+  <meta property="og:image" content="assets/poster.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&amp;family=Noto+Serif+SC:wght@300;400;500;600;700&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #fbfaf7;
+      --paper-raised: #fff;
+      --paper-sunken: #f2f0ea;
+      --ink: #1b1a18;
+      --ink-soft: #4a4742;
+      --ink-mute: #8a857c;
+      --ink-faint: #b7b1a5;
+      --line: #e6e2d9;
+      --line-strong: #d6d1c4;
+      --accent: #b08a48;
+      --accent-ink: #83612b;
+      --accent-soft: #f4ecdc;
+      --lotus: #6e8065;
+      --shadow: 0 18px 60px rgba(27, 26, 24, .08);
+      --font-serif: Newsreader, "Noto Serif SC", Georgia, serif;
+      --font-ui: "Hanken Grotesk", "Noto Sans SC", system-ui, sans-serif;
+      --font-code: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --max: 1120px;
+      --reading: 1.72;
+      color-scheme: light;
+    }
+
+    [data-theme="dark"] {
+      --paper: #16150f;
+      --paper-raised: #201e18;
+      --paper-sunken: #100f0b;
+      --ink: #f3f0e7;
+      --ink-soft: #c8c1b3;
+      --ink-mute: #958e80;
+      --ink-faint: #625d52;
+      --line: #2c2a23;
+      --line-strong: #403b31;
+      --accent: #d0a45f;
+      --accent-ink: #e0bd78;
+      --accent-soft: #2b2418;
+      --lotus: #9daf90;
+      --shadow: 0 22px 70px rgba(0, 0, 0, .28);
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background: var(--paper);
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink-soft);
+      font-family: var(--font-serif);
+      font-size: 19px;
+      line-height: var(--reading);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: var(--accent-ink);
+      text-decoration: none;
+      transition: color .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    img, svg, video { display: block; max-width: 100%; }
+
+    button {
+      font: inherit;
+      color: inherit;
+    }
+
+    code {
+      font-family: var(--font-code);
+      font-size: .86em;
+    }
+
+    .wrap {
+      width: min(100% - 48px, var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 84%, transparent);
+      background: color-mix(in srgb, var(--paper) 82%, transparent);
+      backdrop-filter: saturate(1.2) blur(12px);
+    }
+
+    .bar {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-family: var(--font-ui);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand svg {
+      width: 21px;
+      height: 21px;
+      color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .nav {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-family: var(--font-ui);
+      font-size: 14px;
+    }
+
+    .nav a {
+      color: var(--ink-mute);
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .toggles {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 2px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--paper-raised);
+      font-family: var(--font-code);
+      font-size: 12px;
+    }
+
+    .lang-toggle button {
+      border: 0;
+      background: none;
+      border-radius: 999px;
+      padding: 5px 11px;
+      color: var(--ink-mute);
+      cursor: pointer;
+    }
+
+    .lang-toggle button:hover { color: var(--ink); }
+
+    .lang-toggle button[data-active="true"] {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .theme-toggle {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--paper-raised);
+      color: var(--ink-mute);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+
+    .hero {
+      min-height: calc(100svh - 68px);
+      display: grid;
+      align-items: center;
+      padding: 72px 0 84px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: clamp(42px, 7vw, 92px);
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: block;
+      margin: 0 0 14px;
+      color: var(--ink-mute);
+      font-family: var(--font-code);
+      font-size: 12px;
+      line-height: 1.2;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font-serif);
+      font-weight: 500;
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 780px;
+      font-size: clamp(58px, 9vw, 116px);
+    }
+
+    h2 {
+      max-width: 760px;
+      font-size: clamp(38px, 5.6vw, 74px);
+    }
+
+    h3 {
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.18;
+    }
+
+    .sutra {
+      margin: 32px 0 0;
+      color: var(--accent-ink);
+      font-size: clamp(25px, 3.4vw, 44px);
+      line-height: 1.42;
+      font-weight: 400;
+    }
+
+    .lead {
+      max-width: 720px;
+      margin: 24px 0 0;
+      color: var(--ink-soft);
+      font-size: clamp(19px, 2vw, 24px);
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+      align-items: center;
+    }
+
+    .cmd {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 50px;
+      max-width: 100%;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--paper-raised);
+      color: var(--ink);
+      padding: 9px 10px 9px 18px;
+      font-family: var(--font-code);
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .cmd span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .copy {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fffaf0;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 13px;
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 0 20px;
+      font-family: var(--font-ui);
+      font-size: 15px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fffaf0;
+    }
+
+    .btn-primary:hover { text-decoration: none; }
+
+    .btn-secondary {
+      background: var(--paper-raised);
+      color: var(--ink);
+      border-color: var(--line-strong);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hero-side {
+      align-self: stretch;
+      display: grid;
+      place-items: center;
+      min-height: 340px;
+    }
+
+    .gem-mark {
+      width: min(100%, 240px);
+      color: var(--accent);
+      opacity: .92;
+    }
+
+    section {
+      padding: clamp(68px, 10vw, 128px) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .78fr) minmax(260px, .42fr);
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-intro {
+      margin: 0;
+      color: var(--ink-mute);
+      font-size: 20px;
+      line-height: 1.66;
+    }
+
+    .plain {
+      max-width: 830px;
+      margin-top: 28px;
+      color: var(--ink-soft);
+      font-size: clamp(20px, 2.2vw, 27px);
+      line-height: 1.62;
+    }
+
+    .use-grid {
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      border-left: 2px solid var(--accent);
+      padding: 2px 0 2px 18px;
+    }
+
+    .step strong {
+      display: block;
+      color: var(--ink);
+      font-family: var(--font-ui);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .step span {
+      display: block;
+      margin-top: 6px;
+      color: var(--ink-mute);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    .chat {
+      display: grid;
+      gap: 12px;
+    }
+
+    .bubble {
+      width: min(100%, 720px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper-raised);
+      padding: 18px 20px;
+    }
+
+    .bubble.user {
+      justify-self: end;
+      border-color: color-mix(in srgb, var(--accent) 36%, var(--line));
+      background: var(--accent-soft);
+    }
+
+    .speaker {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink-mute);
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .bubble p {
+      margin: 0;
+    }
+
+    .well {
+      text-align: center;
+      background: var(--paper-sunken);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: clamp(68px, 9vw, 108px) 0;
+    }
+
+    .well .wrap {
+      max-width: 760px;
+    }
+
+    .gem-small {
+      width: 38px;
+      margin: 0 auto 22px;
+      color: var(--lotus);
+    }
+
+    .well blockquote {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.34;
+    }
+
+    .well cite {
+      display: block;
+      margin-top: 16px;
+      font-style: normal;
+      color: var(--ink-mute);
+      font-family: var(--font-code);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .eyes {
+      display: grid;
+      gap: 22px;
+      margin-top: 42px;
+    }
+
+    .eye-line {
+      display: grid;
+      grid-template-columns: minmax(260px, .55fr) minmax(260px, .45fr);
+      gap: 22px;
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .eye-line:first-child { border-top: 0; padding-top: 0; }
+
+    .han {
+      color: var(--ink);
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.24;
+    }
+
+    .eng {
+      align-self: center;
+      color: var(--ink-mute);
+      font-family: var(--font-ui);
+      font-size: 18px;
+      line-height: 1.62;
+    }
+
+    .books {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 42px;
+    }
+
+    .book {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper-raised);
+      padding: 18px;
+    }
+
+    .book img {
+      width: 132px;
+      aspect-ratio: 3 / 4.25;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      background: var(--paper-sunken);
+    }
+
+    .book .kind {
+      color: var(--accent-ink);
+      font-family: var(--font-code);
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .book strong {
+      display: block;
+      margin-top: 7px;
+      color: var(--ink);
+      font-size: 24px;
+      line-height: 1.22;
+    }
+
+    .book p {
+      margin: 10px 0 0;
+      color: var(--ink-mute);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .source-note {
+      margin-top: 22px;
+      color: var(--ink-mute);
+      font-family: var(--font-ui);
+      font-size: 16px;
+    }
+
+    .video-shell {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--paper-sunken);
+    }
+
+    .video-shell img,
+    .video-shell video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-play {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      border: 0;
+      background: color-mix(in srgb, var(--paper-sunken) 32%, transparent);
+      cursor: pointer;
+    }
+
+    .play-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--paper-raised) 92%, transparent);
+      color: var(--ink);
+      padding: 12px 18px 12px 14px;
+      font-family: var(--font-ui);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .play-dot {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fffaf0;
+      line-height: 1;
+    }
+
+    .install-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .install {
+      border-top: 2px solid var(--accent);
+      padding-top: 18px;
+    }
+
+    .install h3 {
+      font-family: var(--font-ui);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper-raised);
+      color: var(--ink);
+      padding: 18px;
+      font-family: var(--font-code);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    footer {
+      padding: 72px 0 54px;
+      border-top: 1px solid var(--line);
+      color: var(--ink-mute);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .footer-grid svg {
+      width: 30px;
+      height: 27px;
+      color: var(--accent);
+    }
+
+    .footer-quote {
+      margin: 14px 0 0;
+      color: var(--ink);
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.32;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 14px 20px;
+      font-family: var(--font-ui);
+      font-size: 14px;
+    }
+
+    .mit {
+      margin-top: 24px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+    }
+
+    [data-lang="zh"] .en-only,
+    [data-lang="en"] .zh-only { display: none !important; }
+
+    @media (max-width: 880px) {
+      body { font-size: 18px; }
+      .wrap { width: min(100% - 32px, var(--max)); }
+      .nav a { display: none; }
+      .hero {
+        min-height: auto;
+        padding: 54px 0 72px;
+      }
+      .hero-grid,
+      .section-head,
+      .use-grid,
+      .eye-line,
+      .books,
+      .install-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-side {
+        min-height: 200px;
+        order: -1;
+        place-items: start;
+      }
+      .gem-mark {
+        width: 140px;
+      }
+      .cmd {
+        width: 100%;
+      }
+      .btn {
+        width: 100%;
+      }
+      .book {
+        grid-template-columns: 96px minmax(0, 1fr);
+        gap: 16px;
+        padding: 14px;
+      }
+      .book img {
+        width: 96px;
+      }
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .bar { gap: 12px; }
+      .brand span { display: none; }
+      .toggles { margin-left: auto; }
+      .hero-actions { gap: 10px; }
+      .cmd {
+        border-radius: 18px;
+        align-items: stretch;
+        flex-direction: column;
+        padding: 14px;
+        white-space: normal;
+      }
+      .cmd span {
+        width: 100%;
+        overflow-wrap: anywhere;
+      }
+      .copy {
+        width: 100%;
+      }
+      h1 { font-size: clamp(50px, 16vw, 78px); }
+      h2 { font-size: clamp(34px, 11vw, 54px); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="#">
+        <svg viewBox="0 0 100 90" aria-hidden="true">
+          <path d="M30 10h40l20 24-40 46-40-46Z" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+          <path d="M10 34h80M50 10v76M30 10l20 24 20-24" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+        <span><span class="zh-only">金刚经 · Skill</span><span class="en-only">Diamond Sutra · Skill</span></span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#what"><span class="zh-only">是什么</span><span class="en-only">What</span></a>
+        <a href="#use"><span class="zh-only">怎么用</span><span class="en-only">Usage</span></a>
+        <a href="#eye"><span class="zh-only">经眼</span><span class="en-only">Lines</span></a>
+        <a href="#install"><span class="zh-only">安装</span><span class="en-only">Install</span></a>
+      </nav>
+      <div class="toggles">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="zh">中</button>
+          <button type="button" data-lang-btn="en">EN</button>
+        </div>
+        <button class="theme-toggle" id="themeBtn" type="button" aria-label="Switch theme">☾</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">AI Agent Skill</p>
+          <h1><span class="zh-only">金刚经 · Skill</span><span class="en-only">Diamond Sutra · Skill</span></h1>
+          <p class="sutra">
+            <span class="zh-only">「凡所有相，皆是虚妄。<br>若见诸相非相，即见如来。」</span>
+            <span class="en-only">"All that has form is illusory.<br>See forms as non-forms, and you see the Tathagata."</span>
+          </p>
+          <p class="lead">
+            <span class="zh-only">一个开源 AI Skill，把《金刚经》的般若智慧装进你的 AI。悔过去、忧未来、被身份标签压住时，它陪你把心里的结一句一句讲清楚。</span>
+            <span class="en-only">An open-source AI Skill that brings the Diamond Sutra into your agent. When regret, anxiety, or identity labels tighten around you, it helps you talk the knot open, one line at a time.</span>
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#demo"><span class="zh-only">看演示</span><span class="en-only">Watch demo</span></a>
+            <a class="btn btn-secondary" href="https://github.com/dull-bird/diamond-sutra-skill">GitHub</a>
+          </div>
+          <div class="hero-actions" style="margin-top: 12px;">
+            <div class="cmd" aria-label="Install command">
+              <span id="installCmd">npx skills add dull-bird/diamond-sutra-skill</span>
+              <button class="copy" id="copyBtn" type="button"><span class="zh-only">复制</span><span class="en-only">Copy</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="hero-side" aria-hidden="true">
+          <svg class="gem-mark" viewBox="0 0 100 90">
+            <path d="M30 10h40l20 24-40 46-40-46Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+            <path d="M10 34h80M50 10v76M30 10l20 24 20-24" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="what">
+      <div class="wrap">
+        <p class="eyebrow"><span class="zh-only">是什么</span><span class="en-only">What it is</span></p>
+        <h2><span class="zh-only">不装神弄鬼，把佛法讲回日常。</span><span class="en-only">No mystique. Just Dharma spoken back into daily life.</span></h2>
+        <p class="plain">
+          <span class="zh-only">它不是算命、鸡汤或电子法师人设。它是一份 Agent Skill：把《金刚经》的核心经义、南怀瑾的讲法脉络、费勇面向现代焦虑的解释，整理成 AI 可以遵循的说话方式。</span>
+          <span class="en-only">It is not fortune-telling, therapy cosplay, or a mystical persona. It is an Agent Skill: a structured way for an AI to speak from the Diamond Sutra, Nan Huai-Jin's doctrinal framing, and Fei Yong's modern reading of anxiety.</span>
+        </p>
+      </div>
+    </section>
+
+    <section id="use">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="zh-only">怎么用</span><span class="en-only">Usage</span></p>
+            <h2><span class="zh-only">两种唤醒方式。</span><span class="en-only">Two ways to wake it.</span></h2>
+          </div>
+          <p class="section-intro">
+            <span class="zh-only">直接点名，或者自然倾诉。它会把问题带回「无所住」和「三心不可得」。</span>
+            <span class="en-only">Call it directly, or just speak naturally. It brings the conversation back to non-abiding and the ungraspable mind.</span>
+          </p>
+        </div>
+        <div class="use-grid">
+          <div class="steps">
+            <div class="step">
+              <strong><span class="zh-only">显式唤醒</span><span class="en-only">Explicit invocation</span></strong>
+              <span><code>/diamond-sutra</code></span>
+            </div>
+            <div class="step">
+              <strong><span class="zh-only">自动触发</span><span class="en-only">Auto invoke</span></strong>
+              <span><span class="zh-only">提到焦虑、工作压力、身份标签、放不下过去时，Agent 可以自动调用。</span><span class="en-only">When anxiety, work pressure, social labels, or regret appear, the agent can invoke it automatically.</span></span>
+            </div>
+          </div>
+          <div class="chat" aria-label="Conversation example">
+            <div class="bubble user">
+              <span class="speaker"><span class="zh-only">你</span><span class="en-only">You</span></span>
+              <p><span class="zh-only">最近项目老被打回，我感觉自己特别失败，脑子一直停在昨天。</span><span class="en-only">My project keeps getting rejected. I feel like a failure, and my mind keeps living in yesterday.</span></p>
+            </div>
+            <div class="bubble">
+              <span class="speaker">Diamond Sutra Skill</span>
+              <p><span class="zh-only">你现在抓住的，不只是项目结果，也是一个「我很失败」的相。《金刚经》说「过去心不可得」，昨天那股水已经流走了。今天要做的不是否认难受，而是别把难受做成你的身份。</span><span class="en-only">What you are holding is not only the project result, but the mark of "I am a failure." The Diamond Sutra says, 「过去心不可得」: the past mind cannot be grasped. Today's work is not to deny the pain, but to stop making pain your identity.</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="eye" class="well">
+      <div class="wrap">
+        <svg class="gem-small" viewBox="0 0 180 120" aria-hidden="true">
+          <path d="M90 102C65 80 57 55 90 18c33 37 25 62 0 84Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M37 104h106" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <blockquote>
+          <span class="zh-only">应无所住，而生其心。</span>
+          <span class="en-only">Let the mind arise without dwelling anywhere.</span>
+        </blockquote>
+        <cite><span class="zh-only">《金刚经》</span><span class="en-only">The Diamond Sutra</span></cite>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <p class="eyebrow"><span class="zh-only">两句要点</span><span class="en-only">Two lines to sit with</span></p>
+        <div class="eyes">
+          <div class="eye-line">
+            <div class="han">应无所住，而生其心。</div>
+            <div class="eng"><span class="zh-only">不执着于任何固定的概念、情绪、身份或结果，但心依然活泼泼地生起慈悲和行动。</span><span class="en-only">Do not dwell on any fixed concept, emotion, identity, or outcome; still let compassion and action arise fully.</span></div>
+          </div>
+          <div class="eye-line">
+            <div class="han">过去心不可得，现在心不可得，未来心不可得。</div>
+            <div class="eng"><span class="zh-only">过去抓不住，现在一说已过，未来尚未来。焦虑的手松一点，心就回到脚下。</span><span class="en-only">The past cannot be held, the present is gone as soon as named, and the future has not arrived. Loosen the anxious grip; return to the ground underfoot.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="books">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="zh-only">从两本书蒸馏而成</span><span class="en-only">Distilled from two books</span></p>
+            <h2><span class="zh-only">一层义理，一层现代说法。</span><span class="en-only">One layer of doctrine, one layer of modern speech.</span></h2>
+          </div>
+          <p class="section-intro">
+            <span class="zh-only">Skill 不收录原书全文，只抽取结构、义理和表达风格，并用经文作为底座。</span>
+            <span class="en-only">The skill does not reproduce the books. It extracts structure, doctrinal framing, and teaching style, grounded in the sutra.</span>
+          </p>
+        </div>
+        <div class="books">
+          <article class="book">
+            <img src="assets/book-nan.webp" alt="南怀瑾《金刚经说什么》书封">
+            <div>
+              <div class="kind"><span class="zh-only">义理体系</span><span class="en-only">Doctrine</span></div>
+              <strong>《金刚经说什么》</strong>
+              <p><span class="zh-only">南怀瑾的讲经脉络，负责把经文里的般若、四相、无住讲清楚。</span><span class="en-only">Nan Huai-Jin's lecture framework clarifies prajna, the four marks, and non-abiding.</span></p>
+            </div>
+          </article>
+          <article class="book">
+            <img src="assets/book-fei.png" alt="费勇《金刚经修心课》书封">
+            <div>
+              <div class="kind"><span class="zh-only">现代开解</span><span class="en-only">Modern reading</span></div>
+              <strong>《金刚经修心课》</strong>
+              <p><span class="zh-only">费勇面向现代焦虑的讲法，负责把经义落到工作、身份和日常烦恼。</span><span class="en-only">Fei Yong's anxiety-facing reading brings the teaching into work, identity, and ordinary distress.</span></p>
+            </div>
+          </article>
+        </div>
+        <p class="source-note">
+          <span class="zh-only">英文经文、术语和译本对照见 </span><span class="en-only">English scripture renderings and translator notes live in </span>
+          <a href="https://github.com/dull-bird/diamond-sutra-skill/blob/main/scripture-en.md">scripture-en.md</a>.
+        </p>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="zh-only">演示</span><span class="en-only">Demo</span></p>
+            <h2><span class="zh-only">点击后再加载视频。</span><span class="en-only">The video loads only after a click.</span></h2>
+          </div>
+          <p class="section-intro">
+            <span class="zh-only">演示视频放在仓库里。默认只加载封面，节省流量。</span>
+            <span class="en-only">The demo video is stored in this repo. The page loads only the poster until you press play.</span>
+          </p>
+        </div>
+        <div class="video-shell" id="videoShell">
+          <img src="assets/poster.jpg" alt="Diamond Sutra Skill demo poster">
+          <button class="video-play" id="videoPlay" type="button">
+            <span class="play-inner">
+              <span class="play-dot">▶</span>
+              <span class="zh-only">播放演示</span><span class="en-only">Play demo</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="install">
+      <div class="wrap">
+        <p class="eyebrow"><span class="zh-only">安装</span><span class="en-only">Install</span></p>
+        <h2><span class="zh-only">一条命令，或者手动 clone。</span><span class="en-only">One command, or a manual clone.</span></h2>
+        <div class="install-grid">
+          <div class="install">
+            <h3>npx skills</h3>
+            <pre><code>npx skills add dull-bird/diamond-sutra-skill</code></pre>
+          </div>
+          <div class="install">
+            <h3>git clone</h3>
+            <pre><code>git clone https://github.com/dull-bird/diamond-sutra-skill ~/.claude/skills/diamond-sutra</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <svg viewBox="0 0 100 90" aria-hidden="true">
+          <path d="M30 10h40l20 24-40 46-40-46Z" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+          <path d="M10 34h80M50 10v76M30 10l20 24 20-24" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+        <p class="footer-quote">
+          <span class="zh-only">一切有为法，如梦幻泡影。</span>
+          <span class="en-only">All conditioned things are like dreams, illusions, bubbles, and shadows.</span>
+        </p>
+        <p class="mit">MIT License · <span class="zh-only">经文为公版基础文本；本项目不包含原书全文。</span><span class="en-only">Public-domain scripture base; no full copyrighted book text included.</span></p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="https://github.com/dull-bird/diamond-sutra-skill">GitHub</a>
+        <a href="https://github.com/dull-bird/diamond-sutra-skill/blob/main/scripture-en.md">Scripture</a>
+        <a href="https://dull-bird.github.io/">dull-bird</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const langBtns = document.querySelectorAll('[data-lang-btn]');
+    const themeBtn = document.getElementById('themeBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const cmd = document.getElementById('installCmd').textContent.trim();
+
+    const store = {
+      get(key) {
+        try { return window.localStorage && window.localStorage.getItem(key); }
+        catch { return null; }
+      },
+      set(key, value) {
+        try { if (window.localStorage) window.localStorage.setItem(key, value); }
+        catch {}
+      }
+    };
+
+    function setLang(lang) {
+      root.dataset.lang = lang;
+      root.lang = lang === 'zh' ? 'zh' : 'en';
+      langBtns.forEach((btn) => {
+        btn.dataset.active = String(btn.dataset.langBtn === lang);
+      });
+      store.set('db-lang', lang);
+    }
+
+    function setTheme(theme) {
+      root.dataset.theme = theme;
+      themeBtn.textContent = theme === 'dark' ? '☀' : '☾';
+      store.set('db-theme', theme);
+    }
+
+    setLang(store.get('db-lang') || 'zh');
+    setTheme(store.get('db-theme') || 'light');
+
+    langBtns.forEach((btn) => {
+      btn.addEventListener('click', () => setLang(btn.dataset.langBtn));
+    });
+
+    themeBtn.addEventListener('click', () => {
+      setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        if (navigator.clipboard) {
+          await navigator.clipboard.writeText(cmd);
+        }
+      } catch {
+        const fallback = document.createElement('textarea');
+        fallback.value = cmd;
+        fallback.setAttribute('readonly', '');
+        fallback.style.position = 'fixed';
+        fallback.style.opacity = '0';
+        document.body.appendChild(fallback);
+        fallback.select();
+        document.execCommand('copy');
+        fallback.remove();
+      }
+      const zh = root.dataset.lang === 'zh';
+      copyBtn.textContent = zh ? '已复制' : 'Copied';
+      window.setTimeout(() => {
+        copyBtn.textContent = zh ? '复制' : 'Copy';
+      }, 1400);
+    });
+
+    document.getElementById('videoPlay').addEventListener('click', () => {
+      const shell = document.getElementById('videoShell');
+      shell.innerHTML = '<video controls autoplay playsinline poster="assets/poster.jpg"><source src="assets/diamond-sutra-promo.mp4" type="video/mp4"></video>';
+    });
+  </script>
+</body>
+</html>

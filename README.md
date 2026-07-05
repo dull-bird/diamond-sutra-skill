@@ -1,73 +1,84 @@
-# 💎 金刚经.skill
+# Diamond Sutra · Skill
 
-> *「凡所有相，皆是虚妄。若见诸相非相，即见如来。」*
+> "All that has form is illusory. See forms as non-forms, and you see the Tathagata."
+> 「凡所有相，皆是虚妄。若见诸相非相，即见如来。」
 
-[English](README_en.md) | [中文](README.md)
+**English** | [中文](README_zh.md) | [Homepage](https://dull-bird.github.io/diamond-sutra-skill/)
 
+An open-source **AI Agent Skill** that turns any Agent-Skills-capable tool
+(Claude Code, Codex, Gemini CLI, and similar tools) into a warm, down-to-earth
+Diamond Sutra teacher: clear, practical, non-mystical, and useful when you are
+stuck in anxiety, workplace pressure, regret, or social labels.
 
-这是一个基于 南怀瑾老先生《金刚经说什么》与 费勇教授《金刚经修心课：不焦虑的活法》蒸馏而成的 AI Skill（大模型角色插件）。
-它可以让任何支持 AgentSkills（如 Claude Code、Gemini CLI 等）的工具瞬间化身为一位通晓佛法、深谙世事、说话通俗风趣的法师，随时随地开解你在工作与生活中的烦恼。
+This skill is distilled from the sutra itself and two Chinese books:
 
-## 📦 一键安装
+- Nan Huai-Jin, **《金刚经说什么》** — doctrinal framing and close reading.
+- Fei Yong, **《金刚经修心课：不焦虑的活法》** — a modern reading for anxiety and ordinary life.
+- Kumarajiva's Chinese Diamond Sutra text, with English renderings and concept notes in [`scripture-en.md`](scripture-en.md).
 
-**方法一：使用 npx skills（推荐）**
+## Install
 
-如果你使用的环境支持 `npx skills` 命令，可以直接运行下列命令进行一键安装：
+Recommended:
 
 ```bash
 npx skills add dull-bird/diamond-sutra-skill
 ```
 
-**方法二：手动 Git Clone (安装至 Claude Code 等工具)**
-
-如果你的终端支持 AgentSkills 且默认读取 `~/.claude/skills/`：
+Or clone into Claude Code's skills folder:
 
 ```bash
 git clone https://github.com/dull-bird/diamond-sutra-skill ~/.claude/skills/diamond-sutra
 ```
 
-—
-无论使用上述哪种方法，安装完成后，在终端交互界面中即可直接唤起：
-```
+Then invoke it with:
+
+```text
 /diamond-sutra
 ```
 
-## 💬 开始体验
+## Usage
 
-唤醒本技能有两种方式：
+There are two ways to wake the skill.
 
-**方式一：显式唤醒**  
-直接输入 `/diamond-sutra`，你可以向“他”倾诉任何烦恼，或者请教艰深的佛法问题。
+**1. Explicitly**
 
-**方式二：智能触发（Auto-Invoke）**  
-由于技能底层内置了情境触发器，当你甚至没有输入命令，只是自然而然地在聊天中抱怨：
-- ❓ *"最近项目老是被打回，工作压力大，我感觉社会强加给我的标签压得我喘不过气，佛教怎么看？"*
+Type `/diamond-sutra`, then ask a Buddhist question or describe what is troubling you.
 
-大模型会自动感知到你的“焦虑”、“职场高压”与“身份迷茫”，并在后台无缝调起这位“数字法师”为你开解。
+**2. Automatically**
 
+The skill description is written so an agent can invoke it when your message naturally
+mentions anxiety, workplace stress, social labels, regret, or the inability to let go.
 
-## 🪷 本 Skill 的特色设计
+Example:
 
-本技能采用真正的双层架构（Two-Layer Architecture）进行蒸馏：
+> **You:** I keep replaying yesterday's failure. I know I should move on, but I can't.
+>
+> **Diamond Sutra Skill:** The Diamond Sutra says, 「过去心不可得，现在心不可得，未来心不可得。」 The past mind cannot be grasped, the present mind cannot be grasped, and the future mind cannot be grasped. This does not mean your pain is fake. It means you do not have to turn yesterday's pain into today's identity.
 
-1. **义理体系（Doctrine Layer）**：收录了《金刚经》从破除“四相”到“善护念”的无上般若，严格依据原始经文与南老的释义。绝不讲迷信，绝不脱离世间法。
-2. **说法角色（Persona Layer）**：不装神弄鬼不居高临下。语言极具口语化与亲切感，常常会带两句大家耳熟能详的诗词，擅长用最现代的比喻（如“照相机”、“救生圈”）讲最古老的智慧。随时做到“通俗风趣、旁征博引、结合生活、极不说教”。
+## Design
 
-## 🧩 作为 Prompt 直接套用（通用玩法）
+The skill has two layers.
 
-你如果不习惯使用终端的 AI 工具，也可以直接复制本项目根目录下的 `SKILL.md` 的全部内容，随意打开任何一个网页版的大语言模型（ChatGPT、Claude 3、Kimi 等），粘贴进去，告诉它：**“请你严格遵循以下这份 SKILL.md 定义的义理体系与角色设定，和我展开一段对话。”**
+**Doctrine layer:** grounded in the Diamond Sutra's Prajna teaching: breaking the four
+marks, practicing non-abiding generosity, seeing that no fixed dharma can be grasped,
+and returning again and again to 「应无所住，而生其心」.
 
-之后你就能领略到犹如高僧大德或者南师面授机宜式的畅快长谈。
+**Persona layer:** plain, warm, occasionally humorous, and never condescending. It uses
+ordinary examples instead of mystical language, and it avoids claiming spiritual
+attainment.
 
----
+## Use as a plain prompt
 
-## 📚 知识来源与版权声明
+If your AI tool does not support Agent Skills, copy `SKILL.md` into any chat model and
+say:
 
-本 Skill 的义理体系与说法风格，主要通过 AI 知识蒸馏自以下两位老师的经典著作：
-1. **南怀瑾 先生** ——《金刚经说什么》
-2. **费勇 教授** ——《金刚经修心课：不焦虑的活法》
+```text
+Please follow the doctrine and persona defined in this SKILL.md for our conversation.
+```
 
-> **版权声明**：本项目仅用于 AI 技术的学习、交流与个人的修行辅助，旨在以现代科技致敬先贤智慧。技能本身不包含原书的完整文本，仅包含抽取出的语录结构和解读框架。如有任何版权方认为本项目的知识提取侵犯了您的权益，请提交 Issue 告知，作者将第一时间配合下架或修改处理。
+## Sources and license
 
----
-🛠 *This skill is powered and automatically distilled by the [buddhist_skill](https://github.com/dull-bird/buddhist_skill) framework.*
+The skill code and structure are MIT licensed. The two Chinese books are copyrighted;
+this project uses their interpretive framing and structure, not their full text.
+Kumarajiva's Chinese sutra text is public domain. Copyrighted English translations are
+cited for comparison, not reproduced in full.
